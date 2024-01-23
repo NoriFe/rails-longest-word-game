@@ -1,0 +1,21 @@
+<%# <h1>Games#new</h1>
+<p>Find me in app/views/games/new.html.erb</p> %>
+
+<h1>Longest Word Game</h1>
+
+<div>
+  <h2>Current Letters:</h2>
+  <ul>
+    <% @letters.each do |letter| %>
+      <%= letter %>
+    <% end %>
+  </ul>
+</div>
+
+<%= form_tag games_score_path, method: :post, data: { turbo: false } do %>
+  <%= label_tag 'Your Word:' %>
+  <%= text_field_tag :word %>
+  <%= hidden_field_tag :letters, @letters.join(' ') %>
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <%= submit_tag 'Submit' %>
+<% end %>
